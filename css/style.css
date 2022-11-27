@@ -190,7 +190,7 @@ img {
   font-style: italic;
   text-align: center;
   color: #ffffff;
-  max-width: 35ch;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -230,6 +230,7 @@ img {
   align-content: start;
   padding: 30px;
   gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /*  FOOTER */
@@ -242,4 +243,81 @@ img {
   color: #ffffff;
   text-align: center;
   padding: 30px;
+}
+
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header header header"
+      "sidenav content content"
+      "sidenav anuncios anuncios"
+      "footer footer footer";
+  }
+}
+
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+
+  to {
+    right: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .header nav a {
+    font-size: 1rem;
+  }
+
+  .sidenav {
+    padding: 0 30px;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  .sidenav::after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in 0s infinite alternate;
+  }
+
+  .sidenav ul {
+    display: flex;
+  }
+
+  .sidenav ul li {
+    flex: 1 0 60px;
+  }
+
+  .sidenav li a {
+    margin: 30px 30px 30px 0;
+  }
+
+  .estrutura {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "content"
+      "anuncios"
+      "footer";
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
 }
